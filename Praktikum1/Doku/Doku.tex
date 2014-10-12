@@ -4,6 +4,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
 \usepackage{tikz}
 \usetikzlibrary{trees}
 
@@ -14,6 +17,9 @@
 
 
 \begin{document}
+
+%Schriftart einstellbar
+%\changefont{pbk}{m}{n}
 
 %%%%% Styling für Bäume %%%%%%%%%
 % Set the overall layout of the tree
@@ -61,6 +67,7 @@ Die neue Matrix enthält unsere a priori Wahrscheinlichkeiten und entspricht der
 für P(A|B), P($\neg$A|B), P(A|$\neg$B), P($\neg$A|$\neg$B) (+ Summe), leiten Sie daraus die
 Pfadwahrscheinlichkeiten her und zeichnen Sie sie in Baumform. Zeichnen Sie auch die
 Inversion dieses Baumes.
+\vspace{0.3cm}
 
 \begin{tikzpicture}[grow=right, sloped]
 \node[bag] {Start}

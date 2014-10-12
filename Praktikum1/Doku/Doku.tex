@@ -1,0 +1,108 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\usepackage{bigstrut}
+
+\title{KI - Praktikum1}
+\author{Gruppe A\_Blau\_WS1415}
+
+
+\begin{document}
+
+%%%%% Styling für Bäume %%%%%%%%%
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+
+% Define styles for bags and leafs
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+\newpage
+\section{}
+Der Campus Gummersbach der FH Köln hat 1000 Studierende. Es wurde eine Umfrage unter
+allen Studierenden gemacht. Die folgende Matrix gibt Aufschluss darüber, wie die
+Raucher/innen auf die Studierenden verteilt sind.\\\\
+
+\begin{tabular}[bct]{|c|c|c|c|}
+\hline \bigstrut
+& \textbf{B:} weiblich & \textbf{$\neg$B:} männlich &\textbf{Summe}\\
+\hline \bigstrut
+\textbf{A:} Raucher & 410 & 397 & 807 \\
+\hline \bigstrut
+\textbf{$\neg$A:} Nichtraucher & 114 & 79 & 193 \\
+\hline \bigstrut
+\textbf{Summe} & 524 & 476 & 1000\\ \hline
+\end{tabular}
+\subsection*{a)}
+Berechnen Sie die relativen Häufigkeiten und tragen Sie sie in eine
+neue Matrix ein.\\\\
+
+\begin{tabular}[bct]{|c|c|c|c|}
+\hline \bigstrut
+& \textbf{B:} weiblich & \textbf{$\neg$B:} männlich &\textbf{Summe}\\
+\hline \bigstrut
+\textbf{A:} Raucher & 0,410 & 0,397 & 0,807 \\
+\hline \bigstrut
+\textbf{$\neg$A:} Nichtraucher & 0,114 & 0,079 & 0,193 \\
+\hline \bigstrut
+\textbf{Summe} & 0,524 & 0,476 & 1\\ \hline
+\end{tabular}
+\subsection*{b)}
+Die neue Matrix enthält unsere a priori Wahrscheinlichkeiten und entspricht der Vierfeldtafel
+für P(A|B), P($\neg$A|B), P(A|$\neg$B), P($\neg$A|$\neg$B) (+ Summe), leiten Sie daraus die
+Pfadwahrscheinlichkeiten her und zeichnen Sie sie in Baumform. Zeichnen Sie auch die
+Inversion dieses Baumes.
+
+\begin{tikzpicture}[grow=right, sloped]
+\node[bag] {Start}
+    child {
+        node[bag] {$P(\neg R) $}
+            child {
+                node[end, label=right:
+                    {$P(\neg R\cap M)=0,193 \times 0,524$}] {}
+                edge from parent
+                node[above] {$M$}
+                node[below]  {$0,476$}
+            }
+            child {
+                node[end, label=right:
+                    {$P(\neg R \cap W)=0,193 \times 0,524$}] {}
+                edge from parent
+                node[above] {$W$}
+                node[below]  {$0,524$}
+            }
+            edge from parent
+            node[above] {$NR$}
+            node[below]  {$0,193$}
+    }
+    child {
+        node[bag] {$P(R)$}
+        child {
+                node[end, label=right:
+                    {$P(R\cap M)=0,807\times 0,476$}] {}
+                edge from parent
+                node[above] {$M$}
+                node[below]  {$0,476$}
+            }
+            child {
+                node[end, label=right:
+                    {$P(R\cap W)=0,807\times0,524 $}] {}
+                edge from parent
+                node[above] {$W$}
+                node[below]  {$0,524$}
+            }
+        edge from parent
+            node[above] {$R$}
+            node[below]  {$0,807$}
+    };
+\end{tikzpicture}
+\end{document}

@@ -3,6 +3,7 @@
 \usepackage{german}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{amsmath}
 
 \newcommand{\changefont}[3]{
 \fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
@@ -123,11 +124,27 @@ Berechnen Sie die fehlenden bedingten Wahrscheinlichkeiten und tragen Sie diese 
 \subsection*{d)}
 Aus der Gesamtheit aller Studierenden wird eine Person zufaellig ausgewaehlt.
 \begin{enumerate}
-\item Mit welcher Wahrscheinlichkeit raucht die Person nicht?
+\item Mit welcher Wahrscheinlichkeit raucht die Person nicht?\\
+\begin{align}
+P(\neg A) = 0,193 \, \widehat{=} \, 19,3\%
+\end{align}
 \item Mit welcher Wahrscheinlichkeit ist die Person weiblich?
+\begin{align}
+P(B) = 0,524 \, \widehat{=} \, 52,4\%
+\end{align}
 \item Falls die Person nicht raucht, mit welcher Wahrscheinlichkeit ist sie maennlich?
+\begin{align}
+P(\neg B | \neg A) = \frac{P(\neg B \cap \neg A)}{P(\neg B)} = \frac{0,079}{0,476} = 0,166
+\end{align}
 \item Falls die Person weiblich ist, mit welcher Wahrscheinlichkeit raucht sie?
+\begin{align}
+P(A | B) = \frac{P(A \cap B)}{P(B)} = \frac{0,410}{0,524} = 0,782
+\end{align}
 \item Besteht ein Zusammenhang zwischen Geschlecht und Rauchen?
+\begin{align}
+\frac{P(A | B)}{P(\neg A | B)} &= \frac{P(A | \neg B)}{P(\neg A | \neg B)} \\
+\frac{0,782}{P(\neg A | B)} &= \frac{P(A | \neg B)}{0,166}
+\end{align}
 \end{enumerate}
 \vspace{0.3cm}
 \end{document}

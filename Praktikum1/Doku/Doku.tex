@@ -160,4 +160,36 @@ $\Rightarrow$ Verhältnismäßig existieren mehr männliche Raucher als weiblich
 \subsection*{e)}
 Erstellen Sie das Kausale Netz in SamIam \url{http://reasoning.cs.ucla.edu/samiam/} und tragen Sie die entsprechenden Wahrscheinlichkeiten ein.
 \vspace{0.3cm}
+
+
+\maketitle
+\newpage
+\section{}
+Betrachten Sie eine Welt, die durch die Zufallsvariablen \textbf{(A)}Wetter, \textbf{(B)}Zahnloch und \textbf{(C)}Zahnschmerzen vollständig beschrieben wird. Unsere hypothetische Umfragepopulation besteht aus 90-jährigen Kriegsveteranen mit grässlichen Zähnen, einige von ihnen besitzen außerdem die übernatürliche Fähigkeit, Tiefdruckgebiete durch plötzlich eintretende Zahnschmerzen zu erkennen (der Rest benutzt für diese Zwecke eine alte Knieverletzung). Der Sinn unseres Netzes ist es, das Wetter zu bestimmen ohne aus dem Fenster schauen zu müssen – Stattdessen werden unsere Veteranen telefonisch befragt, sagen wir als ABM-Maßnahme für Umfrageinstitute.
+Die Variablen haben folgende mögliche Zustände:
+\begin{itemize}
+\item P(A): sonnig, wolkig, regnerisch
+\item P(B): ja / nein
+\item P(C): ja / nein
+\end{itemize}
+
+\subsection*{a)}
+
+\begin{tabular}[bct]{|c|c|c|c|c|c|}
+\hline \bigstrut
+& \multicolumn{2}{|c|}{\textbf{C:} Zahnschmerz } & \multicolumn{2}{|c|}{\textbf{$\neg$C}: Zahnschmerz } & \textbf{Summe} \\
+\hline \bigstrut
+& \textbf{B:} Zahnloch & \textbf{$\neg$B:} Zahnloch & \textbf{B:} Zahnloch & \textbf{$\neg$B:} Zahnloch & \\
+\hline \bigstrut
+\textbf{A:} Sonnig & 0,1 & 0,01 & 0,1 & 0,19 & 0,4 \\ 
+\hline \bigstrut
+\textbf{A:} Wolkig & 0,12 & 0,08 & 0,08 & 0,02 & 0,3 \\ 
+\hline \bigstrut
+\textbf{A:} Regnerisch & 0,25 & 0,022 & 0,006 & 0,022 & 0,3 \\ 
+\hline \bigstrut
+\textbf{Summe} & 0,47 & 0,112 & 0,186 & 0,232 & 1.0 \\ 
+\hline
+\end{tabular}
+
+
 \end{document}

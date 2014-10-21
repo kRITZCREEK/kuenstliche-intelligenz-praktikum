@@ -1,0 +1,57 @@
+net
+{
+	propagationenginegenerator1791944048146838126L = "edu.ucla.belief.approx.BeliefPropagationSettings@5e08a0e2";
+	recoveryenginegenerator6944530267470113528l = "edu.ucla.util.SettingsImpl@3802d927";
+	node_size = (130.0 55.0);
+}
+
+node A
+{
+	states = ("Sonnig" "Wolkig" "Regnerisch" );
+	position = (57 -32);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable0";
+	label = "Wetter";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node B
+{
+	states = ("True" "False" );
+	position = (69 -231);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable1";
+	label = "Zahnloch";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node C
+{
+	states = ("True" "False" );
+	position = (311 -138);
+	diagnosistype = "AUXILIARY";
+	DSLxSUBMODEL = "Root Submodel";
+	ismapvariable = "false";
+	ID = "variable2";
+	label = "Zahnschmerz";
+	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+potential ( A | C )
+{
+	data = ((	0.189	0.344	0.467	)
+		(	0.694	0.239	0.067	));
+}
+potential ( B | )
+{
+	data = (	0.656	0.344	);
+}
+potential ( C | B )
+{
+	data = ((	0.5710937500000001	0.42890625	)
+		(	0.5710937500000001	0.42890625	));
+}

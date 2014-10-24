@@ -1,14 +1,14 @@
 net
 {
-	propagationenginegenerator1791944048146838126L = "edu.ucla.belief.approx.BeliefPropagationSettings@5e08a0e2";
-	recoveryenginegenerator6944530267470113528l = "edu.ucla.util.SettingsImpl@3802d927";
+	propagationenginegenerator1791944048146838126L = "edu.ucla.belief.approx.BeliefPropagationSettings@eb8e09e";
+	recoveryenginegenerator6944530267470113528l = "edu.ucla.util.SettingsImpl@7ccf4dc";
 	node_size = (130.0 55.0);
 }
 
 node A
 {
 	states = ("Sonnig" "Wolkig" "Regnerisch" );
-	position = (57 -32);
+	position = (57 -33);
 	diagnosistype = "AUXILIARY";
 	DSLxSUBMODEL = "Root Submodel";
 	ismapvariable = "false";
@@ -20,7 +20,7 @@ node A
 node B
 {
 	states = ("True" "False" );
-	position = (69 -231);
+	position = (45 -223);
 	diagnosistype = "AUXILIARY";
 	DSLxSUBMODEL = "Root Submodel";
 	ismapvariable = "false";
@@ -32,7 +32,7 @@ node B
 node C
 {
 	states = ("True" "False" );
-	position = (311 -138);
+	position = (293 -127);
 	diagnosistype = "AUXILIARY";
 	DSLxSUBMODEL = "Root Submodel";
 	ismapvariable = "false";
@@ -41,17 +41,20 @@ node C
 	DSLxEXTRA_DEFINITIONxDIAGNOSIS_TYPE = "AUXILIARY";
 	excludepolicy = "include whole CPT";
 }
-potential ( A | C )
+potential ( A | )
 {
-	data = ((	0.189	0.344	0.467	)
-		(	0.694	0.239	0.067	));
+	data = (	0.4415	0.2915	0.267	);
 }
 potential ( B | )
 {
 	data = (	0.656	0.344	);
 }
-potential ( C | B )
+potential ( C | B A )
 {
-	data = ((	0.5710937500000001	0.42890625	)
-		(	0.5710937500000001	0.42890625	));
+	data = (((	0.5710937500000001	0.42890625	)
+		(	0.5710937500000001	0.42890625	)
+		(	0.5710937500000001	0.42890625	))
+		((	0.5710937500000001	0.42890625	)
+		(	0.5710937500000001	0.42890625	)
+		(	0.5710937500000001	0.42890625	)));
 }

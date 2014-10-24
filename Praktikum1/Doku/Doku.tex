@@ -80,48 +80,58 @@ Inversion dieses Baumes.
 \begin{tikzpicture}[grow=right, sloped]
 \node[bag] {Start}
     child {
-        node[bag] {$P(\neg R) $}
+        node[bag] {$P(\neg A) $}
             child {
                 node[end, label=right:
-                    {$P(\neg R\cap M)=0,193 \times 0,524$}] {}
+                    {$P(\neg A\cap \neg B)=0,193 \times 0,476$}] {}
                 edge from parent
-                node[above] {$M$}
+                node[above] {$\neg B$}
                 node[below]  {$0,476$}
             }
             child {
                 node[end, label=right:
-                    {$P(\neg R \cap W)=0,193 \times 0,524$}] {}
+                    {$P(\neg A \cap B)=0,193 \times 0,524$}] {}
                 edge from parent
-                node[above] {$W$}
+                node[above] {$B$}
                 node[below]  {$0,524$}
             }
             edge from parent
-            node[above] {$NR$}
+            node[above] {$\neg A$}
             node[below]  {$0,193$}
     }
     child {
-        node[bag] {$P(R)$}
+        node[bag] {$P(A)$}
         child {
                 node[end, label=right:
-                    {$P(R\cap M)=0,807\times 0,476$}] {}
+                    {$P(A\cap \neg B)=0,807\times 0,476$}] {}
                 edge from parent
-                node[above] {$M$}
+                node[above] {$\neg B$}
                 node[below]  {$0,476$}
             }
             child {
                 node[end, label=right:
-                    {$P(R\cap W)=0,807\times0,524 $}] {}
+                    {$P(A\cap B)=0,807\times0,524 $}] {}
                 edge from parent
-                node[above] {$W$}
+                node[above] {$B$}
                 node[below]  {$0,524$}
             }
         edge from parent
-            node[above] {$R$}
+            node[above] {$A$}
             node[below]  {$0,807$}
     };
 \end{tikzpicture}
 \subsection*{c)}
 Berechnen Sie die fehlenden bedingten Wahrscheinlichkeiten und tragen Sie diese in die Baumdiagramme aus \textbf{b)} ein.
+\begin{align}
+P(A | B) = \frac{P(A \cap B)}{P(B)} = \frac{0,410}{0,524} = 0,782 \\
+P(\neg A | B) = 1 - P(A | B) = 1 - 0,782 = 0,218 \\
+P(A | \neg B) = \frac{P(A \cap \neg B)}{P(\neg B)} = \frac{0,397}{0,476} = 0,834 \\
+P(\neg A | \neg B) = 1 - P(A | \neg B) = 1 - 0,834 = 0,166 \\\\
+P(B | A) = \frac{P(B \cap A)}{P(A)} = \frac{0,410}{0,807} = 0,508 \\
+P(\neg B | A) = 1 - P(B | A) = 1 - 0,508 = 0,492 \\
+P(\neg B | \neg A) = \frac{P(\neg B \cap \neg A)}{P(\neg A)} = \frac{0,079}{0,193} = 0,409 \\
+P(B | \neg A) = 1 - P(\neg B | \neg A) = 1 - 0,409 = 0,591
+\end{align}
 \vspace{0.3cm}
 \subsection*{d)}
 Aus der Gesamtheit aller Studierenden wird eine Person zufaellig ausgewaehlt.
@@ -136,7 +146,7 @@ P(B) = 0,524 \, \widehat{=} \, 52,4\%
 \end{align}
 \item Falls die Person nicht raucht, mit welcher Wahrscheinlichkeit ist sie maennlich?
 \begin{align}
-P(\neg B | \neg A) = \frac{P(\neg B \cap \neg A)}{P(\neg B)} = \frac{0,079}{0,476} = 0,166
+P(\neg B | \neg A) = \frac{P(\neg B \cap \neg A)}{P(\neg A)} = \frac{0,079}{0,193} = 0,409
 \end{align}
 \item Falls die Person weiblich ist, mit welcher Wahrscheinlichkeit raucht sie?
 \begin{align}

@@ -14,7 +14,8 @@
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
-# *.pdf
+Praktikum*/Doku/*.pdf
+Praktikum*/src/*.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl

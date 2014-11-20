@@ -66,6 +66,14 @@ abgebrochen werden.
 Der genetische Code für ein perfektes Individuum lautet: <1,1,1,1,1,1,1,1>
 Das Gen 1 mit dem Fitnesswert +500 ist für unsere Zielfunktion das beste Gen. Dementsprechend ist das Individuum, welches acht mal das Gen 1 beinhaltet das optimale Individuum. 
 
+\subsection*{c}
+Wie hoch ist die Wahrscheinlichkeit, dass dieses Individuum in unserer zufällig generierten ersten Generation bereits einmal enthalten ist?\\
+\begin{align*}
+i_{max} &= max(F\mathbb(I)) \\\\
+P(i_{max}\in Population) &= \frac{\text{Anzahl der günstigen Individuen * Populationsgröße}}{\text{Anzahl der möglichen Individuen}} \\\\
+P(i_{max}\in Population) &= \frac{1*500}{4^8} = 0.7629\%
+\end{align*}
+
 \subsection*{e}
 Welche Gefahr bestünde, wenn wir auf den Mutationsschritt verzichten würden?\\
 Unsere gegebenen Möglichkeiten neue Individuen zu gewinnen, sind \textit{1-Punkt-Crossover} und \textit{Random Resetting}.\\

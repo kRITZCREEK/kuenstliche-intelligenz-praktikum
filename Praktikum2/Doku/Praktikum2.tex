@@ -54,7 +54,7 @@ F(i) = \sum_j i_j
 \end{align*}
 
 \subsubsection*{Abbruchbedingung}
-Wir sehen für die Abbruchbedigung zwei sinnnvolle Möglichkeiten:
+Wir sehen für die Abbruchbedingung zwei sinnvolle Möglichkeiten:
 \begin{itemize}
 \item Abbruch nach Erreichen eines gegebenen Zielwertes
 \item Abbruch nach fehlender Verbesserung über mehrere Generationen
@@ -62,6 +62,10 @@ Wir sehen für die Abbruchbedigung zwei sinnnvolle Möglichkeiten:
 In jedem Fall muss nach einer maximalen Anzahl von Evolutionsschritten
 abgebrochen werden.
 
+\subsection*{e}
+Welche Gefahr bestünde, wenn wir auf den Mutationsschritt verzichten würden?\\
+Unsere gegebenen Möglichkeiten neue Individuen zu gewinnen, sind \textit{1-Punkt-Crossover} und \textit{Random Resetting}.\\
+Beim 1 Punkt Crossover kann kein Kind Gene enthalten, die nicht an der selben Position bei einem der Elternteile vorkommen. Ließe man die Mutation (\textit{Random Resetting}) nun weg, kann eine Population ohne Individuum mit Gen $X$ an der Stelle $n$ nie ein Individuum mit Gen $X$ an der Stelle $n$ hervorbringen. Das hätte zur Folge, dass bei einer ungünstigen Startpopulation ein Erreichen des vollständigen Lösungsraums nicht möglich ist.
 \end{document}
 
 %%% Local Variables:

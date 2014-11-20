@@ -1,0 +1,61 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{marvosym}
+
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\usepackage{bigstrut}
+
+\title{KI - Praktikum2}
+\author{Gruppe A\_Blau\_WS1415\\\\
+    Felix Gebauer\\
+    Steffen Lang\\
+    Mara Braun\\
+    Christoph Hegemann\\
+    Janis Saritzoglou}
+
+
+\begin{document}
+\maketitle
+\newpage
+\section{}
+Gene:
+\begin{itemize}
+\item A: 500
+\item B: 10
+\item C: 0
+\item D: -200
+\end{itemize}
+8 Gene pro Individuum. Startpopulation 500 zufallsgenerierte
+Individuen.
+
+\subsection*{a}
+Sei $\mathbb{G} = \{500,10,0,-200\}$ die Menge aller Gene, dann ist
+$\mathbb{I} = \mathbb{G}^8$ die Menge aller möglichen Individuen mit 8
+Genen.
+
+\subsubsection*{Fitnessfunktion}
+Sei $P \subseteq \mathbb{I}$ eine Population.\\
+Dann weist die Fitnessfunktion $F$ einem jeden Individuum $i \in P$
+einen Wert zu.\\
+\begin{align*}
+F: \mathbb{I} \longrightarrow \mathbb{Z}\\
+F(i) = \sum_j i_j
+\end{align*}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

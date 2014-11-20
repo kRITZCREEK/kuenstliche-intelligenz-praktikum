@@ -109,3 +109,7 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+# java bin
+**/bin
+/Praktikum2/Code/.settings/org.eclipse.jdt.core.prefs

@@ -11,8 +11,7 @@ public class OnePointCrossover extends AbstractRecombiner {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "OnePointCrossover";
 	}
 
 	@Override
@@ -29,7 +28,7 @@ public class OnePointCrossover extends AbstractRecombiner {
 			childOneGenes.addAll(motherGenes.subList(crossPoint, 7));
 			
 			ArrayList<AbstractGene> childTwoGenes = (ArrayList<AbstractGene>) motherGenes.subList(0, crossPoint);
-			childTwoGenes.addAll(motherGenes.subList(crossPoint, 7));
+			childTwoGenes.addAll(fatherGenes.subList(crossPoint, 7));
 			
 			currentPopulation.replace(currentPopulation.getIndividualAt(i * 2), new Individual(childOneGenes));
 			currentPopulation.replace(currentPopulation.getIndividualAt(i * 2 + 1), new Individual(childTwoGenes));

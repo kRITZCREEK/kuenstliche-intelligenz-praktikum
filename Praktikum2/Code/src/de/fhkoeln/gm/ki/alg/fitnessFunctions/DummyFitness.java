@@ -16,7 +16,7 @@ public class DummyFitness extends AbstractFitness {
 
 	@Override
 	public String getName() {
-		return this.toString();
+		return "DummyFitness";
 	}
 
 }

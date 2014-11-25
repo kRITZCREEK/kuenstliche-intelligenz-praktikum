@@ -31,8 +31,10 @@ public class FitnessFunction extends AbstractFitness {
 
 	@Override
 	public boolean thresholdReached() {
-		if (maxFitness > 3510)
+		if (maxFitness > 3510) {
+			maxFitness = Float.NEGATIVE_INFINITY;
 			return true;
+		}
 		else
 			return false;
 	}

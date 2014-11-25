@@ -18,7 +18,10 @@ public class OnePointCrossover extends AbstractRecombiner {
 	@Override
 	public Population recombine(Population currentPopulation) {
 		Population rtn = new Population();
-		int crossPoint = new Random().nextInt(5) + 1;
+		// crossPoint zwischen 1 und länge - 1		
+		int geneSize = (currentPopulation.getIndividualAt(0).getGenes().size());
+
+		int crossPoint = new Random().nextInt(geneSize-2) + 1;
 		
 		for (int i = 0; i < (currentPopulation.getCurrentSize() / 2); i++) {
 			
@@ -28,10 +31,10 @@ public class OnePointCrossover extends AbstractRecombiner {
 			
 			
 			ArrayList<AbstractGene> childOneGenes = toArrayList(fatherGenes.subList(0, crossPoint));
-			childOneGenes.addAll(motherGenes.subList(crossPoint, 7));
+			childOneGenes.addAll(toArrayList(motherGenes.subList(crossPoint, geneSize)));
 			
 			ArrayList<AbstractGene> childTwoGenes = toArrayList(motherGenes.subList(0, crossPoint));
-			childTwoGenes.addAll(fatherGenes.subList(crossPoint, 7));
+			childTwoGenes.addAll(toArrayList(fatherGenes.subList(crossPoint, geneSize)));
 			
 
 			rtn.add(new Individual(childOneGenes));

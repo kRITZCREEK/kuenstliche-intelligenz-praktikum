@@ -67,7 +67,7 @@ public class GUI_Swing implements ActionListener {
 			public void run() {
 				try {
 					GUI_Swing window = new GUI_Swing();
-					self=window;
+					self = window;
 					window.frmGeneticAlgorithmThingamagig.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

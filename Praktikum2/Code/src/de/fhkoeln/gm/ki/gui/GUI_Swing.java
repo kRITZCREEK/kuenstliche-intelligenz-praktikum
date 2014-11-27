@@ -225,13 +225,13 @@ public class GUI_Swing implements ActionListener {
 		
 		PopSizeText = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		PopSizeText.setHorizontalAlignment(SwingConstants.RIGHT);
-		PopSizeText.setText("50");
+		PopSizeText.setText("500");
 		PopSizeText.setColumns(10);
 
 		
 		GeneSizeText = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		GeneSizeText.setHorizontalAlignment(SwingConstants.RIGHT);
-		GeneSizeText.setText("4");
+		GeneSizeText.setText("8");
 		GeneSizeText.setColumns(10);
 		
 		

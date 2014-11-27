@@ -50,7 +50,7 @@ public class DataSource {
 	public AbstractRecombiner currentRecombiner;
 	public GeneticAlgorithm currentGeneticAlgorithm;
 	
-	public static String BOTNAME = "Unknown";
+	public static String BOTNAME = "A_BLAU";
 	private DataSource(){}
 	
 	public static DataSource getInstance(){

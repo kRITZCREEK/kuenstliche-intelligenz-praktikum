@@ -15,6 +15,5 @@
 	<classpathentry kind="lib" path="lib/servlet.jar"/>
 	<classpathentry kind="lib" path="lib/swtgraphics2d.jar"/>
 	<classpathentry kind="con" path="org.lejos.nxt.ldt.LEJOS_LIBRARY_CONTAINER/pc"/>
-	<classpathentry kind="lib" path="/home/janis/Downloads/bluecove-2.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 
 
+
 import de.fhkoeln.gm.ki.alg.GeneticAlgorithm;
 import de.fhkoeln.gm.ki.alg.fitnessFunctions.AbstractFitness;
 import de.fhkoeln.gm.ki.alg.genes.AbstractGene;
@@ -32,18 +33,23 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextPane;
 import javax.swing.JSplitPane;
 import javax.swing.BoxLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import org.jfree.chart.ChartPanel;
 
 import java.awt.Component;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTabbedPane;
+
+import lejos.nxt.Motor;
 
 public class GUI_Swing implements ActionListener {
 	private DataSource ds;
@@ -470,6 +476,7 @@ public class GUI_Swing implements ActionListener {
 					Connector.close();
 				Connector.connect(DataSource.BOTNAME);
 				BotMonitor.getInstance().initialize(true);
+				BotMonitor.getInstance().resetArm();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -15,6 +15,10 @@ import lejos.nxt.UltrasonicSensor;
 public class BotMonitor {
 	
 	private UltrasonicSensor USS;
+	public UltrasonicSensor getUSS() {
+		return USS;
+	}
+
 	private int USSWarningrange= 200;
 	private boolean initialized=false;
 	

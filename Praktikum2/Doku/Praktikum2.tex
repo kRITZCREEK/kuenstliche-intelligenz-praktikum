@@ -63,8 +63,8 @@ In jedem Fall muss nach einer maximalen Anzahl von Evolutionsschritten
 abgebrochen werden.
 
 \subsection*{b}
-Der genetische Code für ein perfektes Individuum lautet: <1,1,1,1,1,1,1,1>
-Das Gen 1 mit dem Fitnesswert +500 ist für unsere Zielfunktion das beste Gen. Dementsprechend ist das Individuum, welches acht mal das Gen 1 beinhaltet das optimale Individuum.
+Der genetische Code für ein perfektes Individuum lautet: <A,A,A,A,A,A,A,A>
+Das Gen A mit dem Fitnesswert +500 ist für unsere Zielfunktion das beste Gen. Dementsprechend ist das Individuum, welches acht mal das Gen A beinhaltet das optimale Individuum.
 
 \subsection*{c}
 Wie hoch ist die Wahrscheinlichkeit, dass dieses Individuum in unserer zufällig generierten ersten Generation bereits einmal enthalten ist?\\
@@ -86,6 +86,8 @@ State Full Random'' zu setzen, ist es sinnvoller ``Full Replacement''
 anzuwenden. Da die Problemstellung mit einem ``Greedy'' Ansatz gelöst
 werden kann, ist ein schnelles, gieriges Vorgehen hier geeignet.
 
+\newpage
+
 \section*{Aufgabe 2}
 \subsubsection*{b)}
 \textit{Dokumentieren und begründen sie ihre Designentscheidungen.}
@@ -93,14 +95,14 @@ werden kann, ist ein schnelles, gieriges Vorgehen hier geeignet.
 Wir haben uns für folgende Konfiguration entschieden:
 
 \begin{itemize}
-\item Populationsgröße: \textbf{5}\\
+\item Populationsgröße: \textbf{4}\\
 Unsere kleine Populationsgröße ist mit der langen Zeit die die
 Fitnessfunktion pro Individuum benötigt begründet. Um
 Evolutionsschritte durchführen zu können darf diese nicht zu groß sein.
 \item Gene pro Individuum: \textbf{8}\\
 Diese hohe Anzahl an Genen pro Individuum erlaubt das Lernen und den
 Evolutionsgedanken zu verstärken. Viele Gene erlauben interessante Rekombinationsmöglichkeiten.
-\item Anzahl unterschiedlicher Gene: \textbf{4}\\
+\item Anzahl unterschiedlicher Gene: \textbf{5}\\
 Wir haben uns für diese geringe Anzahl an unterschiedlichen Genen
 entschieden, um den Lösungsraum bewusst zu verkleinern. Und Redundanz
 bei der Genauswahl zu vermeiden.

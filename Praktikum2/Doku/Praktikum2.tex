@@ -28,7 +28,7 @@
 \begin{document}
 \maketitle
 \newpage
-\section{}
+\section*{Aufgabe 1}
 Gene:
 \begin{itemize}
 \item A: 500
@@ -85,6 +85,35 @@ Statt bei der Reproduktion auf eine zufällige Ersetzung durch ``Steady
 State Full Random'' zu setzen, ist es sinnvoller ``Full Replacement''
 anzuwenden. Da die Problemstellung mit einem ``Greedy'' Ansatz gelöst
 werden kann, ist ein schnelles, gieriges Vorgehen hier geeignet.
+
+\section*{Aufgabe 2}
+\subsubsection*{b)}
+\textit{Dokumentieren und begründen sie ihre Designentscheidungen.}
+
+Wir haben uns für folgende Konfiguration entschieden:
+
+\begin{itemize}
+\item Populationsgröße: \textbf{5}
+\item Gene pro Individuum: \textbf{8}
+Diese hohe Anzahl an Genen pro Individuum erlaubt das Lernen und den
+Evolutionsgedanken zu verstärken. Viele Gene erlauben interessante Rekombinationsmöglichkeiten.
+\item Anzahl unterschiedlicher Gene: \textbf{4}\\
+Wir haben uns für diese geringe Anzahl an unterschiedlichen Genen
+entschieden, um den Lösungsraum bewusst zu verkleinern. Und Redundanz
+bei der Genauswahl zu vermeiden.
+\item Selektionsalgorithmus: \textbf{Gewichtete Wahrscheinlichkeit}
+\item Rekombination: \textbf{1-Punkt-Crossover}
+\item Mutation: \textbf{Random-Resetting}\\
+Die vorherigen 3 Punkte sind aus Aufgabe 1 übernommen, und
+\textit{keine} Designentscheidung. Der Vollständigkeit halber sollen sie hier
+dennoch aufgelistet werden.
+\item Reproduktion: \textbf{Steady-State Strongest for Weakest}\\
+Wir haben uns für diese Reproduktionsmethode entschieden, da wir bei
+unserer vergleichsweise kleinen Populationsgröße, schnelle
+Verbesserungen benötigen.
+
+\end{itemize}
+
 
 
 

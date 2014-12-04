@@ -7,7 +7,7 @@ import de.fhkoeln.gm.ki.alg.util.Individual;
 import de.fhkoeln.gm.ki.alg.util.Population;
 
 public class RandomResetter extends AbstractMutator {
-	public static final float MUTATECHANCE = 0.01f;
+	public static final float MUTATECHANCE = 0.10f;
 	@Override
 	public Population mutate(Population tmpPopulation,
 			AbstractGene[] viableGenes) {

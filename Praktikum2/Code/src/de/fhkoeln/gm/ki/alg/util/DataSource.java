@@ -2,6 +2,8 @@ package de.fhkoeln.gm.ki.alg.util;
 
 import java.util.ArrayList;
 
+import org.jfree.data.function.PowerFunction2D;
+
 import de.fhkoeln.gm.ki.alg.GeneticAlgorithm;
 import de.fhkoeln.gm.ki.alg.fitnessFunctions.DistanceFitness;
 import de.fhkoeln.gm.ki.alg.fitnessFunctions.DummyFitness;
@@ -12,6 +14,7 @@ import de.fhkoeln.gm.ki.alg.genes.GeneAForward;
 import de.fhkoeln.gm.ki.alg.genes.GeneABackward;
 import de.fhkoeln.gm.ki.alg.genes.GeneBForward;
 import de.fhkoeln.gm.ki.alg.genes.GeneBBackward;
+import de.fhkoeln.gm.ki.alg.genes.GeneBPowerForward;
 import de.fhkoeln.gm.ki.alg.genes.TestGeneA;
 import de.fhkoeln.gm.ki.alg.genes.TestGeneB;
 import de.fhkoeln.gm.ki.alg.genes.TestGeneC;
@@ -139,6 +142,7 @@ public class DataSource {
 		genes.add(new GeneABackward());
 		genes.add(new GeneBForward());
 		genes.add(new GeneBBackward());
+		genes.add(new GeneBPowerForward());
 		fitnessFunctions.add(new DummyFitness());
 		fitnessFunctions.add(new FitnessFunction());
 		fitnessFunctions.add(new DistanceFitness());

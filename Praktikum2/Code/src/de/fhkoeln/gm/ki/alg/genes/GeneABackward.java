@@ -2,21 +2,21 @@ package de.fhkoeln.gm.ki.alg.genes;
 
 import lejos.nxt.Motor;
 
-public class GeneD extends AbstractGene {
+public class GeneABackward extends AbstractGene {
 
 	@Override
 	public char getName() {
-		return 'D';
+		return 'a';
 	}
 
 	@Override
 	public String getDescription() {
-		return "D";
+		return "Gene A Backward";
 	}
 
 	@Override
 	public float execute() {
-		Motor.B.rotate(-45);
+		Motor.A.rotate(-45);
 		return 0f;
 	}
 

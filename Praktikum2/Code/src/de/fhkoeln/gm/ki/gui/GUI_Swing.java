@@ -231,7 +231,7 @@ public class GUI_Swing implements ActionListener {
 		
 		PopSizeText = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		PopSizeText.setHorizontalAlignment(SwingConstants.RIGHT);
-		PopSizeText.setText("500");
+		PopSizeText.setText("10");
 		PopSizeText.setColumns(10);
 
 		

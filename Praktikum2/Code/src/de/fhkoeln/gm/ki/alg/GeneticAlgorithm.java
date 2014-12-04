@@ -3,6 +3,7 @@ package de.fhkoeln.gm.ki.alg;
 import java.io.NotActiveException;
 import java.util.ArrayList;
 
+import de.fhkoeln.gm.ki.alg.util.DataSource;
 import de.fhkoeln.gm.ki.alg.fitnessFunctions.AbstractFitness;
 import de.fhkoeln.gm.ki.alg.mutators.AbstractMutator;
 import de.fhkoeln.gm.ki.alg.recombiners.AbstractRecombiner;
@@ -66,6 +67,8 @@ public class GeneticAlgorithm extends Thread {
 			if(fitnessFunction.thresholdReached()){
 				updateGUI();
 				notifyGUIFinishedAlgorithm();
+				
+				//DataSource.getInstance().currentGeneticAlgorithm.pauseThread();
 				return;
 			}
 			select();

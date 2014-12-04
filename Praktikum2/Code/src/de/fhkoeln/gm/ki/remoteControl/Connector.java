@@ -1,4 +1,5 @@
 package de.fhkoeln.gm.ki.remoteControl;
+import lejos.nxt.Motor;
 import lejos.nxt.remote.NXTCommand;
 import lejos.pc.comm.NXTComm;
 import lejos.pc.comm.NXTCommLogListener;
@@ -38,6 +39,9 @@ public class Connector {
 		}
 		NXTCommandConnector.setNXTCommand(new NXTCommand(conn.getNXTComm()));
 		connected=true;
+
+		Motor.A.setSpeed(900);
+		Motor.B.setSpeed(900);
 
 	}	
 	

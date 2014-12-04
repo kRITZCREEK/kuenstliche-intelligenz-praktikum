@@ -80,46 +80,80 @@ Inversion dieses Baumes.
 \begin{tikzpicture}[grow=right, sloped]
 \node[bag] {Start}
     child {
-        node[bag] {$P(\neg A) $}
+        node[bag] {$\neg A$}
             child {
                 node[end, label=right:
-                    {$P(\neg A\cap \neg B)=0,193 \times 0,476$}] {}
+                    {$P(\neg B | \neg A)$}] {}
                 edge from parent
-                node[above] {$\neg B$}
-                node[below]  {$0,476$}
+                node[below]  {$0,409$}
             }
             child {
                 node[end, label=right:
-                    {$P(\neg A \cap B)=0,193 \times 0,524$}] {}
+                    {$P(B | \neg A)$}] {}
                 edge from parent
-                node[above] {$B$}
-                node[below]  {$0,524$}
+                node[above] {$0,591$}
             }
             edge from parent
-            node[above] {$\neg A$}
-            node[below]  {$0,193$}
+            node[above] {$0,193$}
     }
     child {
-        node[bag] {$P(A)$}
+        node[bag] {$A$}
         child {
                 node[end, label=right:
-                    {$P(A\cap \neg B)=0,807\times 0,476$}] {}
+                    {$P(\neg B | A)$}] {}
                 edge from parent
-                node[above] {$\neg B$}
-                node[below]  {$0,476$}
+                node[above] {$0,492$}
             }
             child {
                 node[end, label=right:
-                    {$P(A\cap B)=0,807\times0,524 $}] {}
+                    {$P(B | A)$}] {}
                 edge from parent
-                node[above] {$B$}
-                node[below]  {$0,524$}
+                node[above] {$0,508$}
             }
         edge from parent
-            node[above] {$A$}
-            node[below]  {$0,807$}
+            node[above] {$0,807$}
     };
 \end{tikzpicture}
+
+\begin{tikzpicture}[grow=right, sloped]
+\node[bag] {Start}
+    child {
+        node[bag] {$\neg B$}
+            child {
+                node[end, label=right:
+                    {$P(\neg A | \neg B)$}] {}
+                edge from parent
+                node[below]  {$0,166$}
+            }
+            child {
+                node[end, label=right:
+                    {$P(A | \neg B)$}] {}
+                edge from parent
+                node[above] {$0,834$}
+            }
+            edge from parent
+            node[above] {$0,476$}
+    }
+    child {
+        node[bag] {$B$}
+        child {
+                node[end, label=right:
+                    {$P(\neg A | B)$}] {}
+                edge from parent
+                node[above] {$0,218$}
+            }
+            child {
+                node[end, label=right:
+                    {$P(A | B)$}] {}
+                edge from parent
+                node[above] {$0,782$}
+            }
+        edge from parent
+            node[above] {$0,524$}
+    };
+\end{tikzpicture}
+
+
 \subsection*{c)}
 Berechnen Sie die fehlenden bedingten Wahrscheinlichkeiten und tragen Sie diese in die Baumdiagramme aus \textbf{b)} ein.
 \begin{align}
@@ -202,13 +236,13 @@ Zeichnen Sie die vollständige gemeinsame Verteilung in Form einer 3-dimensional
 \hline \bigstrut
 & \textbf{B:} Zahnloch & \textbf{$\neg$B:} Zahnloch & \textbf{B:} Zahnloch & \textbf{$\neg$B:} Zahnloch & \\
 \hline \bigstrut
-\textbf{A:} Sonnig & 0,1 & 0,01 & 0,1 & 0,19 & 0,4 \\ 
+\textbf{A:} Sonnig & 0,1 & 0,01 & 0,1 & 0,19 & 0,4 \\
 \hline \bigstrut
-\textbf{A:} Wolkig & 0,12 & 0,08 & 0,08 & 0,02 & 0,3 \\ 
+\textbf{A:} Wolkig & 0,12 & 0,08 & 0,08 & 0,02 & 0,3 \\
 \hline \bigstrut
-\textbf{A:} Regnerisch & 0,25 & 0,022 & 0,006 & 0,022 & 0,3 \\ 
+\textbf{A:} Regnerisch & 0,25 & 0,022 & 0,006 & 0,022 & 0,3 \\
 \hline \bigstrut
-\textbf{Summe} & 0,47 & 0,112 & 0,186 & 0,232 & 1.0 \\ 
+\textbf{Summe} & 0,47 & 0,112 & 0,186 & 0,232 & 1.0 \\
 \hline
 \end{tabular}
 \end{flushleft}

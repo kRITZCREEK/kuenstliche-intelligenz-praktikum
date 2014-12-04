@@ -115,3 +115,5 @@ sympy-plots-for-*.tex/
 /Praktikum2/Code/.settings/org.eclipse.jdt.core.prefs
 /Praktikum2/.metadata/
 /Praktikum2/.recommenders/
+Praktikum2/Code/src/de/fhkoeln/gm/ki/alg/util/DataSource.java
+Praktikum2/Code/src/de/fhkoeln/gm/ki/alg/TestMain.java

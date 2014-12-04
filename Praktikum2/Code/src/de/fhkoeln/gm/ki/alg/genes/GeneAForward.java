@@ -16,7 +16,7 @@ public class GeneAForward extends AbstractGene {
 
 	@Override
 	public float execute() {
-		Motor.A.rotate(45);
+		Motor.A.rotate(15);
 		return 0f;
 	}
 

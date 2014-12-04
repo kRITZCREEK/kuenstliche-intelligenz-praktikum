@@ -40,14 +40,18 @@ public class Connector {
 		NXTCommandConnector.setNXTCommand(new NXTCommand(conn.getNXTComm()));
 		connected=true;
 
-		Motor.A.setSpeed(900);
-		Motor.B.setSpeed(900);
+		Motor.A.setSpeed(90);
+		Motor.A.rotate(90);
+		
+		Motor.B.setSpeed(180);
 
 	}	
 	
 	public static void close() throws Exception{
-		if(connected)
+		if(connected) {
 			conn.close();
+			Motor.A.rotate(-90);
+		}
 		connected=false;
 	}
 	

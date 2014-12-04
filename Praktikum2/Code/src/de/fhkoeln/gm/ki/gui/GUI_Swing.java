@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 
 
 
+
+
 import de.fhkoeln.gm.ki.alg.GeneticAlgorithm;
 import de.fhkoeln.gm.ki.alg.fitnessFunctions.AbstractFitness;
 import de.fhkoeln.gm.ki.alg.genes.AbstractGene;
@@ -231,7 +233,7 @@ public class GUI_Swing implements ActionListener {
 		
 		PopSizeText = new JFormattedTextField(NumberFormat.getIntegerInstance());
 		PopSizeText.setHorizontalAlignment(SwingConstants.RIGHT);
-		PopSizeText.setText("10");
+		PopSizeText.setText("4");
 		PopSizeText.setColumns(10);
 
 		
@@ -477,6 +479,8 @@ public class GUI_Swing implements ActionListener {
 				Connector.connect(DataSource.BOTNAME);
 				BotMonitor.getInstance().initialize(true);
 				BotMonitor.getInstance().resetArm();
+				Motor.A.setStallThreshold(10, 2);
+				Motor.B.setStallThreshold(10, 2);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

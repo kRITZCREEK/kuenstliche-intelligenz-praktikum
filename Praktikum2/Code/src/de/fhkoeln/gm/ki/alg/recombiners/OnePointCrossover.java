@@ -18,7 +18,7 @@ public class OnePointCrossover extends AbstractRecombiner {
 	@Override
 	public Population recombine(Population currentPopulation) {
 		Population rtn = new Population();
-		// crossPoint zwischen 1 und länge - 1		
+
 		int geneSize = (currentPopulation.getIndividualAt(0).getGenes().size());
 
 		int crossPoint = new Random().nextInt(geneSize-2) + 1;

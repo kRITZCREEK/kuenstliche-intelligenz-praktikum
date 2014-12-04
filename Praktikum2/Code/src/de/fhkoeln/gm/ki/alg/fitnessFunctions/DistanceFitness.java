@@ -9,17 +9,30 @@ public class DistanceFitness extends AbstractFitness {
 
 	@Override
 	public float evaluate(Individual genome) {
+		
+		
 		BotMonitor bot = BotMonitor.getInstance();
 		bot.resetArm();
 		float initialDistance = bot.getUSS().getDistance();
 		for(AbstractGene g : genome.getGenes()){
 			g.execute();
 		}
-		return initialDistance - bot.getUSS().getDistance();
+		
+		
+		float fitness 	= genome.fitness 
+						= initialDistance - bot.getUSS().getDistance();
+		
+		return fitness;
 	}
 
 	@Override
 	public boolean thresholdReached() {
+		BotMonitor bot = BotMonitor.getInstance();
+		if (bot.getUSS().getDistance() <= 6)
+			return true;
+		
+		
+		
 		return false;
 	}
 

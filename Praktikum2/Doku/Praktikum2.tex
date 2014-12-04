@@ -64,7 +64,7 @@ abgebrochen werden.
 
 \subsection*{b}
 Der genetische Code für ein perfektes Individuum lautet: <1,1,1,1,1,1,1,1>
-Das Gen 1 mit dem Fitnesswert +500 ist für unsere Zielfunktion das beste Gen. Dementsprechend ist das Individuum, welches acht mal das Gen 1 beinhaltet das optimale Individuum. 
+Das Gen 1 mit dem Fitnesswert +500 ist für unsere Zielfunktion das beste Gen. Dementsprechend ist das Individuum, welches acht mal das Gen 1 beinhaltet das optimale Individuum.
 
 \subsection*{c}
 Wie hoch ist die Wahrscheinlichkeit, dass dieses Individuum in unserer zufällig generierten ersten Generation bereits einmal enthalten ist?\\
@@ -77,11 +77,17 @@ P(i_{max}\in Population) &= \frac{1*500}{4^8} = 0.7629\%
 \subsection*{e}
 Welche Gefahr bestünde, wenn wir auf den Mutationsschritt verzichten würden?\\\\
 Unsere gegebenen Möglichkeiten neue Individuen zu gewinnen, sind \textit{1-Punkt-Crossover} und \textit{Random Resetting}.\\
-Beim 1 Punkt Crossover kann kein Kind Gene enthalten, die nicht an der selben Position bei einem der Elternteile vorkommen. Ließe man die Mutation (\textit{Random Resetting}) nun weg, kann eine Population ohne Individuum mit Gen $X$ an der Stelle $n$ nie ein Individuum mit Gen $X$ an der Stelle $n$ hervorbringen. Das hätte zur Folge, dass bei einer ungünstigen Startpopulation ein Erreichen des vollständigen Lösungsraums nicht möglich ist.
+Beim 1 Punkt Crossover kann kein Kind Gene enthalten, die nicht an der selben Position bei einem der Elternteile vorkommen. Lässt man die Mutation (\textit{Random Resetting}) nun weg, kann eine Population ohne Individuum mit Gen $X$ an der Stelle $n$ nie ein Individuum mit Gen $X$ an der Stelle $n$ hervorbringen. Das hätte zur Folge, dass bei einer ungünstigen Startpopulation ein Erreichen des vollständigen Lösungsraums nicht möglich ist.
 
 \subsection*{f}
 Welche Änderung würden Sie vornehmen, um den oben beschriebenen Algorithmus zu optimieren?\\\
-Statt bei der Reproduktion auf eine zufällie Ersetzung durch ``Steady State Full Random'' zu setzen, ist es sinnvoller ``Full Replacement'' anzuwenden.
+Statt bei der Reproduktion auf eine zufällige Ersetzung durch ``Steady
+State Full Random'' zu setzen, ist es sinnvoller ``Full Replacement''
+anzuwenden. Da die Problemstellung mit einem ``Greedy'' Ansatz gelöst
+werden kann, ist ein schnelles, gieriges Vorgehen hier geeignet.
+
+
+
 \end{document}
 
 %%% Local Variables:

@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{marvosym}
+\usepackage{gensymb}
 
 \newcommand{\changefont}[3]{
 \fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
@@ -105,7 +106,20 @@ Evolutionsgedanken zu verstärken. Viele Gene erlauben interessante Rekombinatio
 \item Anzahl unterschiedlicher Gene: \textbf{5}\\
 Wir haben uns für diese geringe Anzahl an unterschiedlichen Genen
 entschieden, um den Lösungsraum bewusst zu verkleinern. Und Redundanz
-bei der Genauswahl zu vermeiden.
+bei der Genauswahl zu vermeiden.\\
+Gene für Motor A:
+\begin{itemize}
+\item A GeneAForward: 15\degree
+\item a GeneABackward: - 15\degree
+\end{itemize}
+Diese Gene sind kleiner gewählt, da der Motor A einen geringeren Bewegungsspielraum hat als der Motor B.\\
+Gene für Motor B:
+\begin{itemize}
+\item B GeneBForward: 45\degree
+\item b GeneBBackward: - 45\degree
+\item P Powergene: 90\degree
+\end{itemize}
+Die Gene für Motor B wurden so gewählt, da dieser im wesentlichen die Fortbewegung steuert und damit größere Winkel benötigt um sich effizient fortbewegen zu können. Das negative Powergene wurde hierbei bewusst ausgelassen, da es mit ihm zu Verklemmungen kam.
 \item Selektionsalgorithmus: \textbf{Gewichtete Wahrscheinlichkeit}
 \item Rekombination: \textbf{1-Punkt-Crossover}
 \item Mutation: \textbf{Random-Resetting}\\

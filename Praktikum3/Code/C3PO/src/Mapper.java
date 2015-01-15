@@ -1,6 +1,7 @@
 import java.util.List;
 
 import lejos.geom.Line;
+import lejos.geom.Rectangle;
 import lejos.robotics.mapping.LineMap;
 import lejos.robotics.navigation.Pose;
 import lejos.robotics.pathfinding.Path;
@@ -41,7 +42,18 @@ public class Mapper {
 	}
 
 	private boolean istGeschlosseneKarte(LineMap karte) {
-		// TODO Auto-generated method stub
+		Rectangle boundingRect = karte.getBoundingRect();
+		float x1 = boundingRect.x;
+		float x2 = x1 + boundingRect.width;
+		float y1 = boundingRect.y;
+		float y2 = y1 + boundingRect.height;
+		
+		Line l1 = new Line(x1, y1, x2, y1);
+		Line l2 = new Line(x1, y2, x2, y2);
+		Line l3 = new Line(x1, y1, x1, y2);
+		Line l4 = new Line(x2, y1, x2, y2);
+		for(Line l : karte.getLines())
+			System.out.println("IMPLEMENTIEREN");
 		return false;
 	}
 

@@ -3,6 +3,7 @@ import java.util.List;
 import lejos.geom.Line;
 import lejos.geom.Rectangle;
 import lejos.robotics.mapping.LineMap;
+import lejos.robotics.navigation.Navigator;
 import lejos.robotics.navigation.Pose;
 import lejos.robotics.pathfinding.Path;
 
@@ -10,6 +11,8 @@ import lejos.robotics.pathfinding.Path;
 
 public class Mapper {
 	
+	private Navigator navigator;
+
 	public LineMap map() {
 		boolean karteFertig = false;
 		
@@ -47,8 +50,9 @@ public class Mapper {
 	}
 
 	private void bewege(Path weg) {
-		// TODO Auto-generated method stub
-		
+		this.navigator.followPath(weg);
+		this.navigator.waitForStop();
+		return;
 	}
 
 	private Path findeWeg(LineMap karte, Pose pose) {

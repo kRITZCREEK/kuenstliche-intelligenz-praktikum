@@ -1,6 +1,7 @@
 import java.util.List;
 
 import lejos.geom.Line;
+import lejos.geom.Rectangle;
 import lejos.robotics.mapping.LineMap;
 import lejos.robotics.navigation.Pose;
 import lejos.robotics.pathfinding.Path;
@@ -61,8 +62,20 @@ public class Mapper {
 	}
 
 	private LineMap add(LineMap karte, List<Line> neueKanten) {
-		// TODO Auto-generated method stub
-		return null;
+		 Line [] kanten = karte.getLines();
+		 Rectangle rect = karte.getBoundingRect();
+		 
+		 Line [] newKarte = new Line [kanten.length + neueKanten.size()];
+		 
+		 for (int i = 0; i < newKarte.length; i++){
+			 if(i < kanten.length){
+				 newKarte[i] = kanten[i];
+			 }
+			 else{
+				 newKarte[i] = neueKanten.get(i-kanten.length);
+			 }
+		 }
+		return new LineMap(newKarte, rect);
 	}
 
 	private List<Line> diff(LineMap karte, List<Line> kanten) {

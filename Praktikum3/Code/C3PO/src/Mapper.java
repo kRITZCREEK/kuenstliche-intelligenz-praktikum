@@ -6,6 +6,7 @@ import lejos.geom.Rectangle;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.UltrasonicSensor;
+import lejos.robotics.localization.MCLPoseProvider;
 import lejos.robotics.mapping.LineMap;
 import lejos.robotics.navigation.Navigator;
 import lejos.robotics.navigation.Pose;
@@ -15,10 +16,7 @@ import lejos.robotics.pathfinding.Path;
 
 
 
-public class Mapper {
-	
-	private UltrasonicSensor USS;
-	
+public class Mapper {	
 	
 	public static void main(String[] args){
 		System.out.println("C3PO");
@@ -90,6 +88,8 @@ public class Mapper {
 	// Pose = Standort aus x- und y-Koordinate, sowie die Ausrichtung
 	private Pose bestimmmePose(LineMap karte, List<Line> kanten) {
 		// TODO Auto-generated method stub
+		MCLPoseProvider pp = new MCLPoseProvider(karte, 0, 0);
+		
 		return null;
 	}
 
@@ -116,35 +116,11 @@ public class Mapper {
 	}
 
 	private List<Line> scanneUmgebung() {
-		// TODO Auto-generated method stub
-		/*
-		float p1x, p1y, p2x, p2y;
-		List<Line> kantenListe;
-		int drehung = 0;
-		// Drehgeschwindigkeit festlegen
-		Motor.A.setSpeed(90);
-				
-		while (drehung <= 360) {
-		// 1. Punkt scannen
-		p1 = USS.getDistance();
-		// Ultraschallsensor weiterdrehen
-		Motor.A.rotate(10);
-		drehung += 10;
-		// 2. Punkt scannen
-		p2 = USS.getDistance();
-		// Kante aus p1 und p2 erzeugen
-		Line kante = new Line(p1x, p1y, p2x, p2y);
-		kantenListe.add(kante);
-		
-		}
-		*/
 		
 		int POINTS = 18;
 		int ANGLEPERPOINT = 360 / POINTS;
 		
 		List<Line> rtn = new ArrayList<Line>();
-		
-		
 		
 		UltrasonicSensor USS = new UltrasonicSensor(SensorPort.S2);
 		RangeFeatureDetector detector = new RangeFeatureDetector(USS, 1000, 10);
@@ -165,7 +141,7 @@ public class Mapper {
 					int currentangle = (angle - 1) * ANGLEPERPOINT;
 					int lastangle = (angle - 2) * ANGLEPERPOINT;
 					
-					rtn.add(this.getLineFromTwoPoints(currentangle, secondrange, lastangle, firstrange));
+					rtn.add(this.erzeugeLinie(currentangle, secondrange, lastangle, firstrange));
 					firstrange = -1;
 					secondrange = -1;
 				}
@@ -179,21 +155,19 @@ public class Mapper {
 		for (int i = 0; i < rtn.size(); i++) {
 			System.out.println("(" + rtn.get(i).x1 + "|" + rtn.get(i).y1 + ")(" + rtn.get(i).x2 + "|" + rtn.get(i).y2 + ")");
 		}
-		
 		Motor.A.rotate(-360);
 		
-		
-		return kantenListe;
+		return rtn;
 	}
 	
-	private Line getLineFromTwoPoints(float range1, float angle1, float range2, float angle2) {
-		float[] p1 = getCoordinatesforPoint(range1, angle1);
-		float[] p2 = getCoordinatesforPoint(range2, angle2);
+	private Line erzeugeLinie(float range1, float angle1, float range2, float angle2) {
+		float[] p1 = berechneKoordinaten(range1, angle1);
+		float[] p2 = berechneKoordinaten(range2, angle2);
 		
 		return new Line(p1[0],p1[1],p2[0],p2[1]);
 	}
 	
-	private float[] getCoordinatesforPoint(float range, float angle) {
+	private float[] berechneKoordinaten(float range, float angle) {
 		// rtn[0] = x 
 		// rtn[1] = y
 		

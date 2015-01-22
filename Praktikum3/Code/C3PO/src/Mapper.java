@@ -105,8 +105,7 @@ private Line[] scanneUmgebung() {
 			System.out.println("(" + rtn.get(i).x1 + "|" + rtn.get(i).y1 + ")(" + rtn.get(i).x2 + "|" + rtn.get(i).y2 + ")");
 		}
 		Motor.A.rotate(-360);
-		
-		return (Line[]) rtn.toArray();
+		return rtn.toArray(new Line[rtn.size()]);
 	}
 	
 	private Line erzeugeLinie(float range1, float angle1, float range2, float angle2) {

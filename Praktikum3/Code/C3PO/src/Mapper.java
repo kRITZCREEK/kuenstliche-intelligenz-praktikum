@@ -75,32 +75,42 @@ private Line[] scanneUmgebung() {
 		int angle = 0;
 		float firstrange = -1;
 		float secondrange = -1;
+		float firstrangeforreal = -1;
+		
 		
 		while(angle < POINTS) {
 			Feature f = detector.scan();
 			if(f == null)
 				continue;
+
 			try {
-				if (firstrange == -1) 
-					firstrange = f.getRangeReading().getRange();
-				else if (secondrange == -1)
-					secondrange = f.getRangeReading().getRange();
+				if (firstrange == -1 && secondrange == -1)
+					// Erste Messung
+					// firstrangeforreal wird verwendet, um nach einem Durchlauf einen geschlossenen Raum zu erhalten
+					firstrangeforreal = secondrange = f.getRangeReading().getRange();
 				else {
+					// Messung X
+					firstrange = secondrange;
+					secondrange = f.getRangeReading().getRange();
+	
+					int secondangle = angle * ANGLEPERPOINT;
+					int firstangle = (angle - 1) * ANGLEPERPOINT;
+	
+					rtn.add(this.erzeugeLinie(firstangle, firstrange, secondangle, secondrange));
 					
-					int currentangle = (angle - 1) * ANGLEPERPOINT;
-					int lastangle = (angle - 2) * ANGLEPERPOINT;
-					
-					rtn.add(this.erzeugeLinie(currentangle, secondrange, lastangle, firstrange));
-					firstrange = -1;
-					secondrange = -1;
 				}
-				
 			} finally {
 				
 			}
-			Motor.A.rotate(20);
+			
+				
+			Motor.A.rotate(ANGLEPERPOINT);
 			angle++;
 		}
+
+		rtn.add(this.erzeugeLinie(360 - ANGLEPERPOINT, secondrange, 0 , firstrangeforreal));
+		
+		
 		for (int i = 0; i < rtn.size(); i++) {
 			System.out.println("(" + rtn.get(i).x1 + "|" + rtn.get(i).y1 + ")(" + rtn.get(i).x2 + "|" + rtn.get(i).y2 + ")");
 		}
@@ -108,7 +118,7 @@ private Line[] scanneUmgebung() {
 		return rtn.toArray(new Line[rtn.size()]);
 	}
 	
-	private Line erzeugeLinie(float range1, float angle1, float range2, float angle2) {
+	private Line erzeugeLinie(float angle1, float range1, float angle2, float range2) {
 		float[] p1 = berechneKoordinaten(range1, angle1);
 		float[] p2 = berechneKoordinaten(range2, angle2);
 		
@@ -124,37 +134,39 @@ private Line[] scanneUmgebung() {
 			  beta,
 			  gamma;
 
+		System.out.println("Abstand " + range + " für Winkel " + angle);
+		System.out.println(Math.sin(90));
 		if (angle < 91) {
 			c = range;
 			beta = angle;
 			gamma = 90;
 			alpha = 180 - (gamma + beta);
-			a = Math.sin(alpha) * c;
-			b = Math.cos(alpha) * c;
-			return new float[] { (float)a, (float)b };
+			a = Math.sin(Math.toRadians(alpha)) * c;
+			b = Math.cos(Math.toRadians(alpha)) * c;
+			return new float[] { (float)b,(float)a };
 		} else if (angle < 181) {
 			c = range;
 			beta = angle - 90;
 			gamma = 90;
 			alpha = 180 - (gamma + beta);
-			a = Math.sin(alpha) * c;
-			b = Math.cos(alpha) * c;
+			a = Math.sin(Math.toRadians(alpha)) * c;
+			b = Math.cos(Math.toRadians(alpha)) * c;
 			return new float[] { (float)a, -(float)b };
 		} else if (angle < 271) {
 			c = range;
 			beta = angle - 180;
 			gamma = 90;
 			alpha = 180 - (gamma + beta);
-			a = Math.sin(alpha) * c;
-			b = Math.cos(alpha) * c;
-			return new float[] { -(float)a, -(float)b };
+			a = Math.sin(Math.toRadians(alpha)) * c;
+			b = Math.cos(Math.toRadians(alpha)) * c;
+			return new float[] { -(float)b, -(float)a };
 		} else {
 			c = range;
 			beta = angle - 270;
 			gamma = 90;
 			alpha = 180 - (gamma + beta);
-			a = Math.sin(alpha) * c;
-			b = Math.cos(alpha) * c;
+			a = Math.sin(Math.toRadians(alpha)) * c;
+			b = Math.cos(Math.toRadians(alpha)) * c;
 			return new float[] { -(float)a, (float)b };
 		}
 		

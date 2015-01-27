@@ -52,7 +52,12 @@ public class RobotLogger {
 		FileOutputStream fos_uss = new FileOutputStream("uss_log.txt"); 
 		OutputStreamWriter out_uss = new OutputStreamWriter(fos_uss, "UTF-8");
 		
-		StringBuilder sb_motor = new StringBuilder("");
+		StringBuilder sb_motor = new StringBuilder("M" + " " 
+				  + (System.nanoTime() - initialTime) / 1000000 + " "
+		          + Motor.C.getTachoCount() + " "
+		          + "a a a " +
+		          + Motor.B.getTachoCount() + " "
+		          + "a a a a a a a\n");
 		StringBuilder sb_uss = new StringBuilder("");
 		
 		float [] angles = new float[36]; 
@@ -71,16 +76,23 @@ public class RobotLogger {
 
 		mp.setTravelSpeed(50.0);
 		
-		for(int j = 0; j < 2; j++){
+		for(int j = 0; j < 5; j++){
 			rR = scanner.getRangeValues();
 			sb_uss.append("S ");
 			for(RangeReading r : rR){
 				System.out.println(r.getAngle() + ", " + r.getRange());
-				sb_uss.append(Math.round((r.getRange()*10)) + " ");
+				if(r.getRange()== -1){
+					sb_uss.append((2550) + " ");
+				}
+				else{
+					sb_uss.append(Math.round((r.getRange()*10)) + " ");
+				}	
 			}
 			sb_uss.append("\n");
 			System.out.println("Motor B: " + Motor.B.getTachoCount());
 			System.out.println("Motor C: " + Motor.C.getTachoCount());
+			
+			mp.travel(10.0);
 			
 			String out_string_motor = "M" + " " 
 							  + (System.nanoTime() - initialTime) / 1000000 + " "
@@ -88,9 +100,7 @@ public class RobotLogger {
 					          + "a a a " +
 					          + Motor.B.getTachoCount() + " "
 					          + "a a a a a a a\n";
-			sb_motor.append(out_string_motor); 
-							
-			mp.travel(100.0);
+			sb_motor.append(out_string_motor); 			
 			
 			System.out.println("Motor B: " + Motor.B.getTachoCount());
 			System.out.println("Motor C: " + Motor.C.getTachoCount());
@@ -99,6 +109,14 @@ public class RobotLogger {
 		out_motor.write(sb_motor.toString());
 		out_motor.flush();
 		out_motor.close();
+		
+		rR = scanner.getRangeValues();
+		sb_uss.append("S ");
+		for(RangeReading r : rR){
+			System.out.println(r.getAngle() + ", " + r.getRange());
+			sb_uss.append(Math.round((r.getRange()*10)) + " ");
+		}
+		sb_uss.append("\n");
 		
 		out_uss.write(sb_uss.toString());
 		out_uss.flush();

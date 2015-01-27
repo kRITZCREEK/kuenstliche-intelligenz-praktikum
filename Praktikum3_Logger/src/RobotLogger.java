@@ -56,7 +56,6 @@ public class RobotLogger {
 		FileOutputStream fos_uss = new FileOutputStream("uss_log.txt"); 
 		OutputStreamWriter out_uss = new OutputStreamWriter(fos_uss, "UTF-8");
 		
-		
 		float[] angles = new float[36]; 
 		for(int i = 0; i < 36; i++){
 			angles[i] = i * 10.0f;
@@ -64,17 +63,21 @@ public class RobotLogger {
 		scanner.setAngles(angles);
 		mp.setTravelSpeed(50.0);
 		
-		rotate(120);
-		return;
-		/*
 		out_motor.write(sb_motor.toString());
 		out_motor.flush();
 		out_motor.close();
 		
+		rR = scanner.getRangeValues();
+		sb_uss.append("S ");
+		for(RangeReading r : rR){
+			System.out.println(r.getAngle() + ", " + r.getRange());
+			sb_uss.append(Math.round((r.getRange()*10)) + " ");
+		}
+		sb_uss.append("\n");
+		
 		out_uss.write(sb_uss.toString());
 		out_uss.flush();
 		out_uss.close();
-		*/
 	}
 	
 	private void move(double distance) {

@@ -41,10 +41,14 @@ public class RobotLogger {
 	private UltrasonicSensor sensor = new UltrasonicSensor(SensorPort.S2);
 	private RangeScanner scanner = new RotatingRangeScanner(head, sensor);
 	private DifferentialPilot mp = new DifferentialPilot(59, 120, Motor.B, Motor.C);
+
+	private StringBuilder sb_motor = new StringBuilder("");
+	private StringBuilder sb_uss = new StringBuilder("");
+	private long initialTime;
 	
 	
 	private void map() throws IOException{
-		long initialTime = System.nanoTime();
+		initialTime = System.nanoTime();
 		
 		FileOutputStream fos_motor = new FileOutputStream("motor_log.txt"); 
 		OutputStreamWriter out_motor = new OutputStreamWriter(fos_motor, "UTF-8");
@@ -52,60 +56,13 @@ public class RobotLogger {
 		FileOutputStream fos_uss = new FileOutputStream("uss_log.txt"); 
 		OutputStreamWriter out_uss = new OutputStreamWriter(fos_uss, "UTF-8");
 		
-		StringBuilder sb_motor = new StringBuilder("M" + " " 
-				  + (System.nanoTime() - initialTime) / 1000000 + " "
-		          + Motor.C.getTachoCount() + " "
-		          + "a a a " +
-		          + Motor.B.getTachoCount() + " "
-		          + "a a a a a a a\n");
-		StringBuilder sb_uss = new StringBuilder("");
-		
-		float [] angles = new float[36]; 
+		float[] angles = new float[36]; 
 		for(int i = 0; i < 36; i++){
-			if (i==0){
-				angles[i] = 0.0f;
-			}
-			else{
-				angles[i] = angles[i-1] + 10.0f;
-			}
-				
+			angles[i] = i * 10.0f;
 		}
 		scanner.setAngles(angles);
-		Pose curPose = new Pose();
-		RangeReadings rR = null;
-
 		mp.setTravelSpeed(50.0);
 		
-		for(int j = 0; j < 5; j++){
-			rR = scanner.getRangeValues();
-			sb_uss.append("S ");
-			for(RangeReading r : rR){
-				System.out.println(r.getAngle() + ", " + r.getRange());
-				if(r.getRange()== -1){
-					sb_uss.append((2550) + " ");
-				}
-				else{
-					sb_uss.append(Math.round((r.getRange()*10)) + " ");
-				}	
-			}
-			sb_uss.append("\n");
-			System.out.println("Motor B: " + Motor.B.getTachoCount());
-			System.out.println("Motor C: " + Motor.C.getTachoCount());
-			
-			mp.travel(10.0);
-			
-			String out_string_motor = "M" + " " 
-							  + (System.nanoTime() - initialTime) / 1000000 + " "
-					          + Motor.C.getTachoCount() + " "
-					          + "a a a " +
-					          + Motor.B.getTachoCount() + " "
-					          + "a a a a a a a\n";
-			sb_motor.append(out_string_motor); 			
-			
-			System.out.println("Motor B: " + Motor.B.getTachoCount());
-			System.out.println("Motor C: " + Motor.C.getTachoCount());
-			
-		}
 		out_motor.write(sb_motor.toString());
 		out_motor.flush();
 		out_motor.close();
@@ -121,6 +78,48 @@ public class RobotLogger {
 		out_uss.write(sb_uss.toString());
 		out_uss.flush();
 		out_uss.close();
+	}
 	
+	private void move(double distance) {
+		mp.travel(distance);
+		
+		System.out.println("Motor B: " + Motor.B.getTachoCount());
+		System.out.println("Motor C: " + Motor.C.getTachoCount());
+		String out_string_motor = "M" + " " 
+						  + (System.nanoTime() - initialTime) / 1000000 + " "
+				          + Motor.C.getTachoCount() + " "
+				          + "a a a " +
+				          + Motor.B.getTachoCount() + " "
+				          + "a a a a a a a\n";
+		
+
+		sb_motor.append(out_string_motor); 
+	}
+	
+	private void rotate(double radius) {
+		mp.travelArc(radius, radius);
+		
+		
+		System.out.println("Motor B: " + Motor.B.getTachoCount());
+		System.out.println("Motor C: " + Motor.C.getTachoCount());
+		String out_string_motor = "M" + " " 
+						  + (System.nanoTime() - initialTime) / 1000000 + " "
+				          + Motor.C.getTachoCount() + " "
+				          + "a a a " +
+				          + Motor.B.getTachoCount() + " "
+				          + "a a a a a a a\n";
+		
+
+		sb_motor.append(out_string_motor); 
+	}
+	
+	private void scan() {
+		RangeReadings rR = scanner.getRangeValues();
+		sb_uss.append("S ");
+		for(RangeReading r : rR){
+			System.out.println(r.getAngle() + ", " + r.getRange());
+			sb_uss.append(Math.round((r.getRange()*10)) + " ");
+		}
+		sb_uss.append("\n");
 	}
 }

@@ -14,7 +14,8 @@ def hmmFilter():
     prob0 = 0.5 # R0
     prob1 = 0   # R1
     for i in range(1, 101):
-        prob1 = (0.7 * prob0) + (0.3 * (1 - prob0))
+        # Berechnung Tag Rt
+        prob1 = (0.7 * prob0) + (0.3 * (1 - prob0)) 
         # Regenschirm
         if umbrella[i] == 1:
             prob0 = (0.9 * prob1) / (0.9 * prob1 + 0.2 * (1 - prob1))

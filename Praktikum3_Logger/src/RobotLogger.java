@@ -10,6 +10,7 @@ import lejos.geom.Rectangle;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.UltrasonicSensor;
+import lejos.robotics.PressureDetector;
 import lejos.robotics.RangeFinder;
 import lejos.robotics.RangeReading;
 import lejos.robotics.RangeReadings;
@@ -72,7 +73,7 @@ public class RobotLogger {
 		sb_motor.append(out_string_motor);
 		scan();
 
-		int movements = 5;
+		int movements = 1;
 		for (int i = 0; i < movements; i++) {
 			move(150);
 		}
@@ -92,12 +93,15 @@ public class RobotLogger {
 		mp.travel(distance, true);
 
 		float range = -1;
+		boolean hasPressure = false;
+		
 		while(mp.isMoving()) {
 			range = sensor.getRange();
 			System.out.println(range);
 			Thread.sleep(100);
-			if (range <= 20) 
+			if (range <= 30) 
 				mp.stop();
+			
 		}
 		
 		
@@ -114,7 +118,7 @@ public class RobotLogger {
 		sb_motor.append(out_string_motor); 
 		scan();
 		
-		if (range <= 25f) 
+		if (range <= 35f) 
 			rotate(1,90);
 		
 	}
@@ -137,7 +141,11 @@ public class RobotLogger {
 		RangeReadings rR = scanner.getRangeValues();
 		sb_uss.append("S a ");
 		for(RangeReading r : rR){
-			sb_uss.append(Math.round((r.getRange()*10)) + " ");
+
+			if (r.getRange() == -1)
+				sb_uss.append(2550 + " ");
+			else
+				sb_uss.append(Math.round((r.getRange()*10)) + " ");
 		}
 		sb_uss.append("\n");
 	}

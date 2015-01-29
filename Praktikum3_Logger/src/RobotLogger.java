@@ -31,7 +31,7 @@ import lejos.robotics.pathfinding.Path;
 
 public class RobotLogger {	
 	
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException, InterruptedException{
 		System.out.println("C3PO");
 		RobotLogger rl = new RobotLogger();
 		rl.map();
@@ -40,14 +40,13 @@ public class RobotLogger {
 	private RegulatedMotor head = Motor.A;
 	private UltrasonicSensor sensor = new UltrasonicSensor(SensorPort.S2);
 	private RangeScanner scanner = new RotatingRangeScanner(head, sensor);
-	private DifferentialPilot mp = new DifferentialPilot(59, 120, Motor.B, Motor.C);
-
+	private DifferentialPilot mp = new DifferentialPilot(56, 120, Motor.B, Motor.C);
 	private StringBuilder sb_motor = new StringBuilder("");
 	private StringBuilder sb_uss = new StringBuilder("");
 	private long initialTime;
 	
 	
-	private void map() throws IOException{
+	private void map() throws IOException, InterruptedException{
 		initialTime = System.nanoTime();
 		
 		FileOutputStream fos_motor = new FileOutputStream("motor_log.txt"); 
@@ -63,28 +62,46 @@ public class RobotLogger {
 		scanner.setAngles(angles);
 		mp.setTravelSpeed(50.0);
 		
-		out_motor.write(sb_motor.toString());
-		out_motor.flush();
-		out_motor.close();
-		
-		rR = scanner.getRangeValues();
-		sb_uss.append("S ");
-		for(RangeReading r : rR){
-			System.out.println(r.getAngle() + ", " + r.getRange());
-			sb_uss.append(Math.round((r.getRange()*10)) + " ");
+		String out_string_motor =  "M" + " " 
+				  + (System.nanoTime() - initialTime) / 1000000 + " "
+		          + Motor.C.getTachoCount() + " "
+		          + "a a a " +
+		          + Motor.B.getTachoCount() + " "
+		          + "a a a a a a a\n";
+		sb_motor.append(out_string_motor);
+		scan();
+
+		int movements = 5;
+		for (int i = 0; i < movements; i++) {
+			move(350);
 		}
-		sb_uss.append("\n");
+		
+		
 		
 		out_uss.write(sb_uss.toString());
 		out_uss.flush();
 		out_uss.close();
+		
+		out_motor.write(sb_motor.toString());
+		out_motor.flush();
+		out_motor.close();
 	}
 	
-	private void move(double distance) {
-		mp.travel(distance);
+	private void move(double distance) throws InterruptedException {
+		mp.travel(distance, true);
+
+		float range = -1;
+		while(mp.isMoving()) {
+			range = sensor.getRange();
+			System.out.println(range);
+			Thread.sleep(100);
+			if (range <= 20) 
+				mp.stop();
+		}
 		
-		System.out.println("Motor B: " + Motor.B.getTachoCount());
-		System.out.println("Motor C: " + Motor.C.getTachoCount());
+		
+		
+		
 		String out_string_motor = "M" + " " 
 						  + (System.nanoTime() - initialTime) / 1000000 + " "
 				          + Motor.C.getTachoCount() + " "
@@ -94,14 +111,16 @@ public class RobotLogger {
 		
 
 		sb_motor.append(out_string_motor); 
+		scan();
+		
+		if (range <= 25f) 
+			rotate(90,150);
+		
 	}
 	
-	private void rotate(double radius) {
-		mp.travelArc(radius, radius);
+	private void rotate(double radius, double distance) {
+		mp.travelArc(radius, distance);
 		
-		
-		System.out.println("Motor B: " + Motor.B.getTachoCount());
-		System.out.println("Motor C: " + Motor.C.getTachoCount());
 		String out_string_motor = "M" + " " 
 						  + (System.nanoTime() - initialTime) / 1000000 + " "
 				          + Motor.C.getTachoCount() + " "
@@ -111,13 +130,13 @@ public class RobotLogger {
 		
 
 		sb_motor.append(out_string_motor); 
+		scan();
 	}
 	
 	private void scan() {
 		RangeReadings rR = scanner.getRangeValues();
-		sb_uss.append("S ");
+		sb_uss.append("S a ");
 		for(RangeReading r : rR){
-			System.out.println(r.getAngle() + ", " + r.getRange());
 			sb_uss.append(Math.round((r.getRange()*10)) + " ");
 		}
 		sb_uss.append("\n");

@@ -62,6 +62,7 @@ public class RobotLogger {
 		scanner.setAngles(angles);
 		mp.setTravelSpeed(50.0);
 		
+		
 		String out_string_motor =  "M" + " " 
 				  + (System.nanoTime() - initialTime) / 1000000 + " "
 		          + Motor.C.getTachoCount() + " "
@@ -73,7 +74,7 @@ public class RobotLogger {
 
 		int movements = 5;
 		for (int i = 0; i < movements; i++) {
-			move(350);
+			move(150);
 		}
 		
 		
@@ -114,13 +115,12 @@ public class RobotLogger {
 		scan();
 		
 		if (range <= 25f) 
-			rotate(90,150);
+			rotate(1,90);
 		
 	}
 	
 	private void rotate(double radius, double distance) {
-		mp.travelArc(radius, distance);
-		
+		mp.travelArc(radius, Math.toRadians(distance));
 		String out_string_motor = "M" + " " 
 						  + (System.nanoTime() - initialTime) / 1000000 + " "
 				          + Motor.C.getTachoCount() + " "

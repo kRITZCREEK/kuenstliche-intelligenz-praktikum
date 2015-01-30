@@ -14,13 +14,13 @@ def hmmFilter():
     prob0 = 0.5 # R0
     prob1 = 0   # R1
     for i in range(1, 101):
-        # Berechnung Tag Rt
+        # Berechnung Tag Rt 
+        # (prediction)
         prob1 = (0.7 * prob0) + (0.3 * (1 - prob0)) 
-        # Regenschirm
-        if umbrella[i] == 1:
+        # (correction)
+        if umbrella[i] == 1: # Regenschirm
             prob0 = (0.9 * prob1) / (0.9 * prob1 + 0.2 * (1 - prob1))
-        # kein Regenschirm
-        else:
+        else: # kein Regenschirm
             prob0 = (0.1 * prob1) / (0.1 * prob1 + 0.8 * (1 - prob1))
         results.append(prob0)
     return results
